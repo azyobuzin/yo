@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Yo「パクられて遺憾だYo」</title>
+    <style>
+        .profile_image {
+            width: 48px;
+            height: 48px;
+            display: block;
+            float: left;
+        }
+        .yo_container {
+            margin-left: 8px;
+            float: left;
+        }
+        .name {
+            font-weight: bold;
+        }
+        .created_at {
+            font-size: 80%;
+        }
+        article {
+            margin: 20px 10px;            
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>調子はどうYo？</h1>
+
+    {% if logged_in %}
+    <form action="yo" method="post">
+        <p>
+            <img src="{{ profile_image }}" width="32" height="32" />
+            {{ screen_name }}<br />
+            <input type="text" name="text" value="Yo" readonly />
+            <input type="submit" value="Yo" />
+        </p>
+    </form>
+    {% else %}
+    <p><a href="authorize">ログイン</a></p>
+    {% endif %}
+
+    {% for yo in yos %}
+    <article>
+        <img class="profile_image" src="{{ yo[4] }}" alt="Yo by" />
+        <div class="yo_container">
+            <div class="name">{{ yo[3] }}</div>
+            <p class="yo">{{ yo[1] }}</p>
+            <div class="created_at">{{ yo[2] }}</div>
+        </div>
+    </article>
+    {% endfor %}
+
+    {% if has_next %}
+    <p><a href="/?max_id={{ max_id }}">Next</a></p>
+    {% endif %}
+</body>
+</html>
