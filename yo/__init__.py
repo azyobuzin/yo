@@ -2,6 +2,7 @@
 
 from datetime import datetime
 import flask
+from flask_wtf.csrf import CSRFProtect
 import os
 import tweepy
 import sqlite3
@@ -9,6 +10,7 @@ import uuid
 
 app = flask.Flask(__name__)
 app.secret_key = os.environ.get("YO_SECRET_KEY", uuid.uuid4().hex)
+csrf = CSRFProtect(app)
 
 consumer_key = os.environ.get("YO_API_KEY", "CHmR87OMP3PghQdkdm6303a5w")
 consumer_secret = os.environ.get("YO_API_SECRET", "rSgMr9g70PnjIWuN2HxQHAoOMIyTcNqRyzt8xiODYINhuTyP8I")

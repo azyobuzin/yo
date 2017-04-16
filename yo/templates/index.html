@@ -32,6 +32,7 @@
 
     {% if logged_in %}
     <form action="yo" method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
         <p>
             <img src="{{ profile_image }}" width="32" height="32" />
             {{ screen_name }}<br />
